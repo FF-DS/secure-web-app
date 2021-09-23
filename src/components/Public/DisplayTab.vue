@@ -22,7 +22,6 @@ export default {
   data() {
     return {
       tab: null,
-      items: ["Tender", "Award", "Company"],
     };
   },
   methods: {

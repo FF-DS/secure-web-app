@@ -78,7 +78,13 @@ export default {
     CompliantDetailCard,
   },
   data() {
-    return { show: false, model: 1 };
+    return {
+      show: false,
+      model: 1,
+      getUserTypeVal: function() {
+        return this.getLoggedInState;
+      },
+    };
   },
   computed: {
     userServicePage() {

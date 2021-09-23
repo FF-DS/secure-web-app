@@ -8,7 +8,7 @@
       max-height="500"
     >
       <v-card class="mx-auto" tile>
-        <v-img height="100px" src="/logo/tendermap.png"></v-img>
+        <v-img height="100px" src="/logo/sm.png"></v-img>
         <v-col>
           <v-avatar size="100" style="position:absolute;top:10%">
             <v-img

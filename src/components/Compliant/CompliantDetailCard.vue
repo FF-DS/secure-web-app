@@ -29,7 +29,7 @@
           <span v-else>Compliant Informations</span>
           <v-spacer></v-spacer>
           <CompliantEditDialog
-            v-if="viewEditDialog && getUserType == 'Basic'"
+            v-if="viewEditDialog && getUserTypeVal == 'Basic'"
             :compliantData="compliantData"
             @close_dialog="close_dialog"
           />
@@ -196,12 +196,12 @@ export default {
   data() {
     return {
       dialog: false,
+      getUserTypeVal: function() {
+        return this.getLoggedInState;
+      },
     };
   },
   methods: {
-    getUserType() {
-      return this.getLoggedInState && this.getUser.role == "Admin";
-    },
     close_dialog() {
       this.dialog = false;
     },
