@@ -21,7 +21,7 @@
         montes, nascetur ridiculus mus.
       </v-card-text>
       <v-card-text class="vuetify-nav-component">
-        {{ new Date().getFullYear() }} — <strong>TenderMap</strong>
+        {{ new Date().getFullYear() }} — <strong>Compliant System</strong>
       </v-card-text>
     </v-card>
     <cookie-law theme="dark-lime">
