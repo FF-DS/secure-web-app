@@ -8,14 +8,11 @@
       >
         {{ getSideBarBurgerState ? "mdi-close" : "mdi-menu" }}
       </v-icon>
-      <v-img
-        v-else
-        max-width="35px"
-        class="mr-2"
-        src="/logo/tendermap.png"
-      ></v-img>
+      <v-img v-else max-width="35px" class="mr-2" src="/logo/sm.png"></v-img>
 
-      <v-toolbar-title class="vuetify-nav-component">TenderMap</v-toolbar-title>
+      <v-toolbar-title class="vuetify-nav-component"
+        >Complaints System</v-toolbar-title
+      >
 
       <div class="flex-grow-1"></div>
 
