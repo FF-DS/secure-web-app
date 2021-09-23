@@ -29,7 +29,7 @@
           <span v-else>Compliant Informations</span>
           <v-spacer></v-spacer>
           <CompliantEditDialog
-            v-if="viewEditDialog"
+            v-if="viewEditDialog && getUserType == 'Basic'"
             :compliantData="compliantData"
             @close_dialog="close_dialog"
           />
@@ -181,7 +181,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["getLoggedInState", "getUser"]),
+    ...mapGetters(["getLoggedInState", "getUser", "getUserType"]),
     userServicePage() {
       return this.$route.name == "my-service";
     },
