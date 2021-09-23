@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosAPI = axios.create({
-  baseURL: "https://compliant-system.herokuapp.com",
+  baseURL: "https://compliant-system.herokuapp.com/api",
   // baseURL: "http://localhost:3000/api",
 });
 
