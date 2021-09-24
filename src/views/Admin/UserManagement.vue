@@ -32,9 +32,11 @@ export default {
     ...mapGetters(["getSnakBarMessage"]),
   },
   methods: {
-    ...mapActions(["searchAccounts"]),
+    ...mapActions(["searchAccounts", "getCSRFtoken"]),
   },
   created() {
+    this.getCSRFtoken();
+
     const searchQueries = {
       query: true,
       queries: {

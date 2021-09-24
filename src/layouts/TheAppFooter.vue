@@ -24,19 +24,12 @@
         {{ new Date().getFullYear() }} — <strong>Compliant System</strong>
       </v-card-text>
     </v-card>
-    <cookie-law theme="dark-lime">
-      <div slot="message">
-        This website uses cookies to ensure you get the best experience on our
-        website <router-link to="privacy-policy">learn more</router-link>
-      </div>
-    </cookie-law>
   </v-footer>
 </template>
 
 <script>
-import CookieLaw from "vue-cookie-law";
 export default {
-  components: { CookieLaw },
+  components: {},
   data: () => ({
     icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
   }),

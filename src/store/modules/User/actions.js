@@ -24,6 +24,7 @@ const actions = {
     commit("setProfileEditDialogStateFlag", stateFlag);
   },
   registerUser({ commit }, userObject) {
+    userObject._csrf = localStorage.getItem("csrfToken");
     API.post(getLink("registerUser", {}), userObject)
       .then((response) => {
         commit("setUser", response.user);
@@ -41,6 +42,7 @@ const actions = {
       });
   },
   updateUser({ commit }, userObject) {
+    userObject._csrf = localStorage.getItem("csrfToken");
     API.put(getLink("updateUser", {}), userObject)
       .then((response) => {
         commit("setUserError", { type: "profileSuccess" });
@@ -57,6 +59,7 @@ const actions = {
       });
   },
   loginUser({ commit }, loginObject) {
+    loginObject._csrf = localStorage.getItem("csrfToken");
     API.post(getLink("loginUser", {}), loginObject)
       .then((response) => {
         commit("setLoggedInState", true);
@@ -81,6 +84,7 @@ const actions = {
     localStorage.setItem("accessToken", null);
   },
   changeProfilePicture({ commit }, picture) {
+    picture._csrf = localStorage.getItem("csrfToken");
     API.post(getLink("changeProfile", {}), picture)
       .then(() => {
         API.get(getLink("getUser", {}), null).then((user) => {
@@ -92,6 +96,7 @@ const actions = {
       });
   },
   changePassword({ commit }, password) {
+    password._csrf = localStorage.getItem("csrfToken");
     API.post(getLink("changePassword", {}), password)
       .then((response) => {
         commit("setUser", response.user);
@@ -109,6 +114,7 @@ const actions = {
   },
   sendAccountUnblockRequest({ dispatch }, params) {
     API.post(getLink("changeAccountState", params), {
+      _csrf: localStorage.getItem("csrfToken"),
       account_state: "Unblocked",
     })
       .then(() => {
@@ -136,6 +142,7 @@ const actions = {
   sendAccountBlockRequest({ dispatch }, params) {
     API.post(getLink("changeAccountState", params), {
       account_state: "Blocked",
+      _csrf: localStorage.getItem("csrfToken"),
     })
       .then(() => {
         const searchQueries = {

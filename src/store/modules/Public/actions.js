@@ -50,6 +50,18 @@ const actions = {
         });
     }
   },
+
+  getCSRFtoken() {
+    API.get(getLink("getcsrftoken", {}), null)
+      .then((csrfToken) => {
+        if (csrfToken) {
+          localStorage.setItem("csrfToken", csrfToken.csrfToken);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
 };
 
 export default actions;

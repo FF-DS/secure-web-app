@@ -4,12 +4,7 @@
     <span @click="add_event()" v-if="!$vuetify.breakpoint.xsOnly">
       <fab
         v-if="
-          !(
-            getCompliantEditDialogState ||
-            getAwardAddDialogState ||
-            getAddCompanyDialogState ||
-            getSideBarState
-          ) &&
+          !(getCompliantEditDialogState || getSideBarState) &&
             !$vuetify.breakpoint.xsOnly &&
             getLoggedInState &&
             getFabVisibility

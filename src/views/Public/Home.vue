@@ -32,9 +32,10 @@ export default {
     ...mapGetters(["getSnakBarMessage"]),
   },
   methods: {
-    ...mapActions([""]),
+    ...mapActions(["getCSRFtoken"]),
   },
   created() {
+    this.getCSRFtoken();
     this.unwatch = this.$store.watch(
       (state, getters) => getters.getSnakBarMessage,
       (newValue, oldVal) => {

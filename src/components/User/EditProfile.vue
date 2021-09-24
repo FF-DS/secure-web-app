@@ -71,9 +71,9 @@
                         <v-col cols="12" sm="6" class="mt-2 pt-3">
                           <v-text-field
                             dense
-                            v-model="verify"
+                            v-model="getUser.role"
                             maxlength="10"
-                            label="Account State"
+                            label="Account Type"
                             disabled
                             required
                           ></v-text-field>

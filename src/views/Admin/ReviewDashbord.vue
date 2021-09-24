@@ -42,10 +42,11 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["usersReviewRequests", "populateFirstPage"]),
+    ...mapActions(["usersReviewRequests", "populateFirstPage", "getCSRFtoken"]),
   },
   created() {
     this.populateFirstPage();
+    this.getCSRFtoken();
 
     this.unwatch = this.$store.watch(
       (state, getters) => getters.getSnakBarMessage,

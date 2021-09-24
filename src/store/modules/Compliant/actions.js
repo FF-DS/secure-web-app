@@ -40,6 +40,8 @@ const actions = {
   },
 
   addCompliant({ commit, dispatch }, compliantObject) {
+    compliantObject._csrf = localStorage.getItem("csrfToken");
+
     API.post(getLink("compliantUserPost", {}), compliantObject)
       .then((compliant) => {
         commit("setCompliantError", { type: "compliantAddSuccess" });
@@ -59,12 +61,14 @@ const actions = {
   },
 
   updateCompliant({ commit, dispatch }, compliantObject) {
+    compliantObject.compliantData._csrf = localStorage.getItem("csrfToken");
+
     API.put(
       getLink("compliantUserEdit", compliantObject.compliantParams),
       compliantObject.compliantData
     )
       .then((compliant) => {
-        commit("setCompliantError", { type: "tenderEditSuccess" });
+        commit("setCompliantError", { type: "compliantEditSuccess" });
         compliant;
 
         if (compliantObject.myService) dispatch("myServiceTab");
@@ -76,24 +80,26 @@ const actions = {
         for (var key in error.response.data) {
           errorObj[key] = error.response.data[key].msg;
         }
-        errorObj["type"] = "tenderEditError";
+        errorObj["type"] = "compliantEditError";
         commit("setCompliantError", errorObj);
       });
   },
 
-  deleteCompliant({ commit, dispatch, getters }, tenderParams) {
+  deleteCompliant({ commit, dispatch, getters }, compliantParams) {
     let link =
       getters.getUserType == "Admin"
         ? "compliantDelete"
         : "compliantUserDelete";
 
-    API.delete(getLink(link, tenderParams), null)
+    API.delete(getLink(link, compliantParams), {
+      _csrf: localStorage.getItem("csrfToken"),
+    })
       .then((compliant) => {
-        commit("setCompliantError", { type: "tenderDeleteSuccess" });
+        commit("setCompliantError", { type: "compliantDeleteSuccess" });
         compliant;
 
-        if (tenderParams.myService) dispatch("myServiceTab");
-        else if (tenderParams.adminService) dispatch("usersReviewRequests");
+        if (compliantParams.myService) dispatch("myServiceTab");
+        else if (compliantParams.adminService) dispatch("usersReviewRequests");
         else dispatch("populateFirstPage");
       })
       .catch((error) => {
@@ -101,39 +107,45 @@ const actions = {
         for (var key in error.response.data) {
           errorObj[key] = error.response.data[key].msg;
         }
-        errorObj["type"] = "tenderDeleteError";
+        errorObj["type"] = "compliantDeleteError";
         commit("setCompliantError", errorObj);
       });
   },
 
-  setCompliantErrorData({ commit }, tenderError) {
-    commit("setCompliantError", tenderError);
+  setCompliantErrorData({ commit }, compliantError) {
+    commit("setCompliantError", compliantError);
   },
 
-  addCompliantFile({ commit }, tenderData) {
-    API.post(getLink("compliantUserFile", tenderData.params), tenderData.file)
+  addCompliantFile({ commit }, compliantData) {
+    // compliantData.file._csrf = localStorage.getItem("csrfToken");
+
+    API.post(
+      getLink("compliantUserFile", compliantData.params),
+      compliantData.file
+    )
       .then((file_address) => {
-        var errorObj = { type: "tenderFileSuccess", file: file_address };
+        var errorObj = { type: "compliantFileSuccess", file: file_address };
         commit("setCompliantError", errorObj);
         return file_address;
       })
       .catch((error) => {
-        var errorObj = { type: "tenderFileError" };
+        var errorObj = { type: "compliantFileError" };
         error;
         commit("setCompliantError", errorObj);
       });
   },
 
-  updateCompliantFile({ commit }, tenderData) {
-    API.put(getLink("compliantUserUpdateFile", tenderData.params), {
-      file_links: tenderData.file,
+  updateCompliantFile({ commit }, compliantData) {
+    API.put(getLink("compliantUserUpdateFile", compliantData.params), {
+      file_links: compliantData.file,
+      _csrf: localStorage.getItem("csrfToken"),
     })
       .then(() => {
-        var errorObj = { type: "tenderFileSuccess" };
+        var errorObj = { type: "compliantFileSuccess" };
         commit("setCompliantError", errorObj);
       })
       .catch((error) => {
-        var errorObj = { type: "tenderFileError" };
+        var errorObj = { type: "compliantFileError" };
         error;
         commit("setCompliantError", errorObj);
       });

@@ -26,10 +26,10 @@
           <span v-if="userServicePage" class="ml-auto text--secondary">
             <v-icon>mdi-account-circle</v-icon> Compliant Informations</span
           >
-          <span v-else>Compliant Informations</span>
+          <span v-else>Compliant Informations</span> {{ getUserType }}
           <v-spacer></v-spacer>
           <CompliantEditDialog
-            v-if="viewEditDialog && getUserTypeVal == 'Basic'"
+            v-if="viewEditDialog && getUserType == 'Basic'"
             :compliantData="compliantData"
             @close_dialog="close_dialog"
           />
@@ -197,7 +197,7 @@ export default {
     return {
       dialog: false,
       getUserTypeVal: function() {
-        return this.getLoggedInState;
+        return this.getUserType;
       },
     };
   },

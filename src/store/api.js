@@ -8,6 +8,9 @@ const axiosAPI = axios.create({
 const apiRequest = (method, url, request) => {
   const headers = {
     authorization: "Bearer " + localStorage.getItem("accessToken"),
+    "CSRF-Token": localStorage.getItem("csrfToken"),
+    "X-CSRF-TOKEN": localStorage.getItem("csrfToken"),
+    "csrf-token": localStorage.getItem("csrfToken"),
   };
 
   return axiosAPI({
@@ -15,6 +18,7 @@ const apiRequest = (method, url, request) => {
     url,
     data: request,
     headers,
+    withCredentials: true,
   })
     .then((res) => {
       return Promise.resolve(res.data);

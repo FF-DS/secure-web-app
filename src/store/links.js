@@ -35,6 +35,7 @@ const SiteLinks = {
   verifyUser: "/verify-account",
   sendResetLink: "/send-reset-link",
   resetPassword: "/reset-account",
+  getcsrftoken: "/getcsrftoken",
 };
 
 const encodeURL = (link, req) => {

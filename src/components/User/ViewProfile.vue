@@ -29,12 +29,6 @@
                           getUser.name.split("/%/")[1]
                       }}
                     </v-list-item-title>
-                    <v-list-item-subtitle>
-                      {{ getUser.verified ? "Verified" : "Not verified" }}
-                      <v-icon v-if="getUser.verified" color="green" small
-                        >mdi-check</v-icon
-                      >
-                    </v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
                 <v-list-item>
@@ -43,7 +37,7 @@
                   </v-list-item-icon>
                   <v-list-item-content>
                     <v-list-item-title class="company-card-data">
-                      Subscription Plan
+                      Account Type
                     </v-list-item-title>
                     <v-list-item-subtitle class="company-card-data">
                       {{ getUser.role }}

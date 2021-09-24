@@ -87,6 +87,7 @@
                   placeholder="Upload your documents"
                   label="File input"
                   prepend-icon="mdi-paperclip"
+                  accept="application/pdf"
                   @change="addFile"
                 >
                 </v-file-input>
@@ -131,6 +132,7 @@ export default {
       this.loadingForm = true;
       let formData = new FormData();
       formData.append("file", file);
+      formData.append("_csrf", localStorage.getItem("csrfToken"));
 
       let compliantParams = {
         param: true,
